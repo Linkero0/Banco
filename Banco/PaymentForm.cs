@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,13 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using DeviceLibrary;
 using DeviceLibrary.Models;
 using Newtonsoft.Json;
 using RestSharp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Banco
 {
@@ -23,6 +26,7 @@ namespace Banco
         Cuentas cuentaPayment;
         int Fail = 0;
         DialogResult Mensaje;
+        List<Document> documentos = new List<Document>();
 
         Document insertMoney;
         DeviceLibrary.DeviceLibrary machine = new DeviceLibrary.DeviceLibrary();
@@ -35,7 +39,7 @@ namespace Banco
             label6.Text = cuentaPayment.debt.ToString();
             lblUser.Text = cuenta.user;
             lblAccount.Text = cuenta.account;
-           
+
 
             Bloq(2);
 
@@ -44,7 +48,6 @@ namespace Banco
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             this.Close();
-            machine.Close();
             BalanceViewForm balanceView = new BalanceViewForm(cuentaPayment);
 
             balanceView.Show();
@@ -52,241 +55,190 @@ namespace Banco
 
         private void button4_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 200).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(200), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 200);
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 500).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(500), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 500);
 
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 100).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(100), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 100);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 50).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(50), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 50);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 20).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(20), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 20);
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 10).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(10), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 10);
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 10).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(10), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 10);
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 5).ToString();
             insertMoney = new Document(Convert.ToDecimal(5), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 5);
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 5).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(5), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 5);
 
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 2).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(2), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 2);
         }
 
         private void label10_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 2).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(2), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 2);
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 1).ToString();
-            insertMoney = new Document(Convert.ToDecimal(1), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            insertMoney = new Document(Convert.ToDecimal(2), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
+            aceptedMoney(insertMoney, 1);
         }
 
         private void label9_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + 1).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(1), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, 1);
         }
 
         private void label11_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDouble(depositadoLabel.Text.Remove(0, 1)) + 0.5).ToString();
+
             insertMoney = new Document(Convert.ToDecimal(.50), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, Convert.ToDecimal(.50));
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            depositadoLabel.Text = "$" + (Convert.ToDouble(depositadoLabel.Text.Remove(0, 1)) + 0.5).ToString();
             insertMoney = new Document(Convert.ToDecimal(.50), DeviceLibrary.Models.Enums.DocumentType.Coin, 1);
-            machine.SimulateInsertion(insertMoney);
-            calculateDiff();
+            aceptedMoney(insertMoney, Convert.ToDecimal(.50));
         }
         private void PaymentForm_Load(object sender, EventArgs e)
         {
-            machine.Open();
-
-            if (machine.Status == DeviceLibrary.Models.Enums.DeviceStatus.Disconnected)
-            {
-                MessageBox.Show("Actualmente no se encuentra disponible el servicio.");
-                btnAbonar.Enabled = false;
-
-                Bloq(1);
-            }
-            if (machine.Status == DeviceLibrary.Models.Enums.DeviceStatus.Disabled)
-            {
-                MessageBox.Show("Servicio en mantenimiento intente mas tarde");
-                Bloq(1);
-                btnAbonar.Enabled = false;
-
-            }
+            machine.Enable();
             //Connected: The device is connected.
             //Disconnected: The device is NOT connected.
             //Enabled: The device is currently accepting coins and bills.
             //Disabled: The device is currently NOT accepting coins or bills..Dispensing: The device is currently dispensing documents.
 
+
         }
+        public void aceptedMoney(Document dc, Decimal dec)
+        {
+            try
+            {
+                machine.SimulateInsertion(dc);
+                depositadoLabel.Text = "$" + (Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1)) + dec).ToString();
+                calculateDiff();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btnAbonar_Click(object sender, EventArgs e)
         {
 
-
+            SQLLite InsertSQL = new SQLLite();
+            decimal paid = Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1));
             var payment = new sentPayment
             {
                 account = cuentaPayment.account,
-                paid = Convert.ToDecimal(depositadoLabel.Text.Remove(0,1))
+                paid = Convert.ToDecimal(depositadoLabel.Text.Remove(0, 1))
 
             };
 
-            debts insertPayment = new debts()
-            {
-                account = cuentaPayment.account,
-                debt = cuentaPayment.debt,
-                paid = payment.paid,
-                datePayment = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
-
-            };
-
-              PostPayment(payment);
+            PostPayment(payment);
             if (Fail == 1)
             {
                 MessageBox.Show("Error con el servicio.. intenta mas tarde", "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            else{
-            
-                  InsertPayment(insertPayment);
+            else
+            {
+
+                InsertSQL.start(payment.account, cuentaPayment.debt, paid, DateTime.Now.ToString("yyyy/MM/dd HH:mm"));
 
             }
 
             if (Fail == 0)
             {
-                decimal vuelto = Convert.ToDecimal(insertPayment.debt- insertPayment.paid );
-                if (vuelto  == 0) Mensaje = MessageBox.Show("Se ha liquidado la deuda", "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (vuelto < 0) Mensaje = MessageBox.Show("Se ha liquidado la deuda, tome su cambio "+(vuelto*-1).ToString(), "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                decimal vuelto = Convert.ToDecimal(cuentaPayment.debt - paid);
+                if (vuelto == 0) Mensaje = MessageBox.Show("Se ha liquidado la deuda", "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (vuelto < 0) Mensaje = MessageBox.Show("Se ha liquidado la deuda, tome su cambio " + (vuelto * -1).ToString(), "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (vuelto > 0) Mensaje = MessageBox.Show("Se ha realizado el abono de manera correcta", "Gracias.!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                machine.Dispense((vuelto*-1));
+                machine.Dispense((vuelto * -1));
 
-              
-                this.Close();
-
-                 inicioForm inicio = new inicioForm();
+                inicioForm inicio = new inicioForm();
+                machine.Disable();
                 this.Close();
                 inicio.Show();
             }
-           
-
-
-
-
-
         }
 
         private async Task PostPayment(sentPayment pagoEnviado)
         {
             var client = new RestClient("https://api.xenterglobal.com:2053/transaction?token=f0326dadf35701ca6af5013902189f9d");
-             var param = pagoEnviado;
+            var param = pagoEnviado;
             var request = new RestRequest();
             request.AddJsonBody(param);
             var response = client.Post(request);
 
-    
-            if (response.StatusCode.ToString().Trim() != "OK") {
-              
+
+            if (response.StatusCode.ToString().Trim() != "OK")
+            {
+
                 Fail = 1;
             }
 
-        }
-
-  
-        private int InsertPayment(debts insertPayment)
-        {
-            var dbConecction = new bankEntities();
-            var objectContext = ((IObjectContextAdapter)dbConecction).ObjectContext;
-
-            try
-            {
-                dbConecction.debts.Add(insertPayment);
-                dbConecction.SaveChanges();
-
-            }
-            catch (Exception e)
-            {
-               
-                Fail = 2;
-
-            }
-
-            return 0;
         }
 
         public void calculateDiff()
@@ -301,8 +253,6 @@ namespace Banco
                 Bloq(1);
 
             }
-
-
         }
 
         public void Bloq(int param)
@@ -351,6 +301,7 @@ namespace Banco
             }
         }
 
-
     }
+
 }
+

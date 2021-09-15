@@ -43,10 +43,10 @@ namespace Banco
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.btnRegresar = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnContinuar = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button13 = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -184,6 +184,14 @@ namespace Banco
             this.btnRegresar.UseVisualStyleBackColor = true;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
+            this.imageList1.Images.SetKeyName(1, "vcsnormal_93488.png");
+            this.imageList1.Images.SetKeyName(2, "back_112351.png");
+            // 
             // btnContinuar
             // 
             this.btnContinuar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -220,20 +228,13 @@ namespace Banco
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
-            this.imageList1.Images.SetKeyName(1, "vcsnormal_93488.png");
-            this.imageList1.Images.SetKeyName(2, "back_112351.png");
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ControlBox = false;
             this.Controls.Add(this.button13);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnContinuar);

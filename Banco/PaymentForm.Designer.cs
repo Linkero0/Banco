@@ -53,12 +53,12 @@ namespace Banco
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnAbonar = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnRegresar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblAccount = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -315,6 +315,13 @@ namespace Banco
             this.btnAbonar.UseVisualStyleBackColor = true;
             this.btnAbonar.Click += new System.EventHandler(this.btnAbonar_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
+            this.imageList1.Images.SetKeyName(1, "vcsnormal_93488.png");
+            // 
             // btnRegresar
             // 
             this.btnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -370,19 +377,13 @@ namespace Banco
             this.lblAccount.TabIndex = 32;
             this.lblAccount.Text = "1234567890";
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
-            this.imageList1.Images.SetKeyName(1, "vcsnormal_93488.png");
-            // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ControlBox = false;
             this.Controls.Add(this.lblAccount);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblUser);

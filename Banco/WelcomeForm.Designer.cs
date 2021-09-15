@@ -51,6 +51,7 @@ namespace Banco
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -58,6 +59,7 @@ namespace Banco
             this.MinimizeBox = false;
             this.Name = "inicioForm";
             this.Text = "Bienvenido!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.inicioForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);

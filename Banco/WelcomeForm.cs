@@ -13,11 +13,12 @@ namespace Banco
 {
     public partial class inicioForm : Form
     {
-
+        DeviceLibrary.DeviceLibrary machine = new DeviceLibrary.DeviceLibrary();
+        int statusService = 0;
         public inicioForm()
         {
-        
-            
+
+
             InitializeComponent();
         }
 
@@ -26,35 +27,65 @@ namespace Banco
             //Billete = 0
             //Moneda = 1
 
+            machine.Open();
+
+            if (machine.Status == DeviceLibrary.Models.Enums.DeviceStatus.Disconnected)
+            {
+                label1.Text = "Actualmente no se encuentra \n disponible el servicio";
+                statusService = 1;
+                
+
+            }
+            if (machine.Status == DeviceLibrary.Models.Enums.DeviceStatus.Disabled)
+            {
+                label1.Text = "Servicio en mantenimiento \n  intente mas tarde";
+                statusService = 1;
+
+            }
+
+
         }
 
-       
+
 
         private void Form1_Click(object sender, EventArgs e)
         {
-            this.Hide();
 
-            LoginForm loginform = new LoginForm();
+            if (statusService ==0)
+            {
+                
+                this.Hide();
 
-            loginform.Show();
+                LoginForm loginform = new LoginForm();
+
+                loginform.Show();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            if (statusService == 0)
+            {
+                
+                this.Hide();
 
-            LoginForm loginform = new LoginForm();
+                LoginForm loginform = new LoginForm();
 
-            loginform.Show();
+                loginform.Show();
+            }
         }
-
         private void btnAcepted_Click(object sender, EventArgs e)
         {
-            DeviceLibrary.DeviceLibrary machine = new DeviceLibrary.DeviceLibrary();
 
-            MessageBox.Show("Hola");
+
+
             Document insertMoney = new Document(Convert.ToDecimal(25), DeviceLibrary.Models.Enums.DocumentType.Bill, 1);
-           
+
+        }
+
+        private void inicioForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            machine.Close();
         }
     }
 }

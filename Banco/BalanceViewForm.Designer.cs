@@ -38,8 +38,8 @@ namespace Banco
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnContinuar = new System.Windows.Forms.Button();
-            this.btnRegresar = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnRegresar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -125,6 +125,13 @@ namespace Banco
             this.btnContinuar.UseVisualStyleBackColor = true;
             this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
+            this.imageList1.Images.SetKeyName(1, "pay_cash_payment_money_dollar_bill_icon_143267.png");
+            // 
             // btnRegresar
             // 
             this.btnRegresar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -140,13 +147,6 @@ namespace Banco
             this.btnRegresar.UseVisualStyleBackColor = true;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "cancel_77947.png");
-            this.imageList1.Images.SetKeyName(1, "pay_cash_payment_money_dollar_bill_icon_143267.png");
-            // 
             // BalanceViewForm
             // 
             this.AcceptButton = this.btnContinuar;
@@ -155,6 +155,7 @@ namespace Banco
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelButton = this.btnRegresar;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ControlBox = false;
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label5);
